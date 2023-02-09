@@ -1,6 +1,11 @@
+package server;
+
+import client.ListenerThread;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class Server {
     ServerSocket server;
@@ -16,7 +21,7 @@ public class Server {
             System.err.println("Failed to open serversocket.");
             e.printStackTrace();
         }
-        System.out.println("Server started...");
+        System.out.println("server.Server started...");
     }
 
     private void acceptClient() {
@@ -40,29 +45,32 @@ public class Server {
     }
 
     private void runProtocol() {
+        Scanner tgb = new Scanner(System.in);
         System.out.println("chatting...");
-        out.println("Welcome!");
-        out.println("What's your name?");
-        String name = null;
-        try {
-            name = in.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
+        String msg = "";
+        while (!msg.equals("QUIT")) {
+            msg = tgb.nextLine();
+            out.println("SERVER: " + msg);
         }
-        System.out.println("Client " + name + " is here");
-        out.println("Nice to see you, " + name);
-        out.flush();
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        Server s = new Server(1234);
+        s.acceptClient();
+        s.getStreams();
+        ListenerThread l = new ListenerThread(s.in, System.out);
+        Thread listener = new Thread(l);
+        listener.start();
+        s.runProtocol();
+        listener.join();
+        s.shutdown();
+    }
+
+    private void shutdown() {
         try {
             client.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        Server s = new Server(1234);
-        s.acceptClient();
-        s.getStreams();
-        s.runProtocol();
     }
 }

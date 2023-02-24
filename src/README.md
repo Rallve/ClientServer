@@ -10,3 +10,5 @@ Jag behöver dock hjälp med att få den att funka. Jag vet inte hur man gör :(
 02/17 - Skapade Controller och Main på klienten. Måste nu fortsätta med servern
 
 02/23 - Lyckades connecta server och klienten... tror jag? Meddelanden verkar inte skickas mellan klient och server, behöver hjälp med att fixa det
+
+02/24 - Gjorde grejer

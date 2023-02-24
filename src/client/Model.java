@@ -23,7 +23,7 @@ public class Model {
         System.out.println("Connection ready...");
     }
 
-    private void getStreams() {
+    public void getStreams() {
         try {
             out = new PrintWriter(socket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));

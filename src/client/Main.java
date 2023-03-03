@@ -9,7 +9,7 @@ public class Main {
         ListenerThread l = new ListenerThread(m.in, System.out);
         Thread listener = new Thread(l);
         listener.start();
-        m.runProtocol();
+        m.runProtocol(v);
         listener.join();
         m.shutDown();
     }

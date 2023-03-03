@@ -13,6 +13,8 @@ public class Model {
     PrintWriter out;
     BufferedReader in;
 
+    //View v;
+
     public Model(String ip, int port) {
         try {
             socket = new Socket(ip,port);
@@ -33,16 +35,17 @@ public class Model {
         System.out.println("Streams ready...");
     }
 
-    private void runProtocol() {
+    public void runProtocol(View v) {
         Scanner tgb = new Scanner(System.in);
         System.out.println("chatting...");
         String msg = "";
         while (!msg.equals("QUIT")) {
             msg = tgb.nextLine();
             out.println("CLIENT: " + msg);
+            v.getTextArea1().append("CLIENT: " + msg);
         }
     }
-
+    /*
     public static void main(String[] args) throws InterruptedException {
         Model me = new Model("10.70.45.159", 1234);
         me.getStreams();
@@ -53,8 +56,8 @@ public class Model {
         listener.join();
         me.shutDown();
     }
-
-    private void shutDown() {
+    */
+    public void shutDown() {
         try {
             socket.close();
         } catch (IOException e) {

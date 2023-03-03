@@ -12,3 +12,5 @@ Jag behöver dock hjälp med att få den att funka. Jag vet inte hur man gör :(
 02/23 - Lyckades connecta server och klienten... tror jag? Meddelanden verkar inte skickas mellan klient och server, behöver hjälp med att fixa det
 
 02/24 - Gjorde grejer
+
+03/03 - Försökte göra så att text visas upp i en JTextArea. Lyckades inte helt, men är påväg.
